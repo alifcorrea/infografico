@@ -1,0 +1,44 @@
+
+<div class="col-lg-12 bloco-ferramentas" style="margin-top: 45px;">
+	<div id="superiorForm"
+		style="width: 80%; height: 100px; margin: 0 auto; border-bottom: 1px solid #ccc;">
+
+		<div style="float: left; margin-top: 20px;">
+			<button class="btn btn-success" ng-click="registrarRegiao();"
+				style="width: 135px; height: 40px;">Novo Registro</button>
+		</div>
+		
+		<!-- <div style="float: right; margin-top: 20px; margin-left: 10px; width: 275px;">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Pesquisar...">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+		</div> -->
+
+	</div>
+</div>
+<div class="col-lg-12">
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th style="padding-left: 20px; border-right: 1px solid #ccc;">Nome</th>
+					<th width="15%">Ações</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr class="trContOver" ng-repeat="regiao in regioes">
+					<td>{{regiao.nome}}</td>
+					<td style="text-align: center">
+						<div class="fa fa-pencil" style="padding: 10px;" ng-click="alterarRegiao(regiao);"></div>
+						<div class="fa fa-trash" style="padding: 10px;"  ng-click="excluirRegiao(regiao);"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

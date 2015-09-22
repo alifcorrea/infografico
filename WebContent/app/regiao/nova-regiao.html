@@ -1,0 +1,59 @@
+<br><br>
+
+
+<h4 class="form-group col-md-offset-3 col-lg-7 colorH4">Cadastro de	Região</h4>
+
+<form class="form-group col-md-offset-3 col-lg-7">
+	
+	<div class="form-group col-lg-12">
+		<label class="label label-default col-lg-1" for="conta">Usuário</label> 
+		<!-- ng-options="conta.id as conta.email for conta in contas -->
+		<select id="conta" class="form-control" ng-options="conta.id as conta.pessoa.nome for conta in contas" ng-model="regiao.conta.id" required>
+			<option value="">Selecione o Usuário</option>
+		</select>
+	</div>
+	
+	<div class="form-group col-lg-12">
+		<label class="label label-default col-lg-1" for="nome">Nome</label> 
+		<input id="nome" type="text" class="form-control" ng-model="regiao.nome" required>
+	</div>
+
+	<div class="form-group col-lg-9">
+		<label class="label label-default col-lg-1" for="cidade">Cidade</label>
+		<input id="cidade" type="text" class="form-control"	ng-model="novaCidade.nome" >
+	</div>
+
+	<div class="form-group col-lg-2">
+		<label class="label label-default col-lg-1" for="uf">UF</label> 
+		<input id="uf" type="text" class="form-control" ng-model="novaCidade.uf" required>
+	</div>
+
+	<div class="form-group col-lg-1 marginBTN">
+		<span class="btn btn-primary" ng-click="addCidade(novaCidade)">
+			<i class="fa fa-plus"></i>
+		</span>
+	</div>
+
+	<table class="tabela">
+		<tr class="titRegistro">
+			<td colspan="3">Cidades Adicionadas</td>
+		</tr>
+		
+		<tr class="titTabela">
+			<th class="textTd">Cidade</th>
+			<th class="textTd" width="100">UF</th>
+			<th width="90" style="text-align: center;">Remover</th>
+		</tr>
+
+		<tr ng-repeat="cidade in regiao.cidades" class="hoverTr">
+			<td class="textTd">{{cidade.nome}}</td>
+			<td class="textTd">{{cidade.uf}}</td>
+			<td class="textTd"><i class="fa fa-trash" ng-click="removerCidadeAdicionada(cidade);"></i></td>
+		</tr>
+	</table>
+
+	<div class="row form-group col-md-12 top30">
+		<button class="btn btn-success" ng-click="salvar();">Salvar</button>
+		<button class="btn btn-danger" ng-click="irParaRegiao();">Cancelar</button>
+	</div>
+</form>

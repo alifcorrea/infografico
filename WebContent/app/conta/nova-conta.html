@@ -1,0 +1,52 @@
+<script src="app/conta/js/jquery.mask.min.js"></script> 
+<script src="app/conta/js/contaMasks.js"></script> 	
+
+<div class="col-md-offset-4 col-lg-6">	
+
+	<h1 class="page-header">Nova Conta</h1>
+	
+	<form class="form-horizontal">						
+		<input type="hidden" ng-model="novaConta.pessoa.id">
+		
+		<div class="form-group col-md-12">
+			<label for="nome" class="label label-default col-lg-1">Nome</label>
+			<input id="nome" type="text" class="form-control" ng-model="novaConta.pessoa.nome" required>
+		</div>				
+		
+		<div class="form-group col-md-12">
+			<label for="cpf" class="label label-default col-lg-1">CPF</label>
+			<input id="cpf" type="text" class="form-control" ng-model="novaConta.pessoa.cpf" required>
+		</div>
+				
+		<div class="form-group col-md-12">
+			<label for="email" class="label label-default col-lg-1">Email</label>
+			<input id="email" type="text" class="form-control" ng-pattern="/^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/" ng-model="novaConta.email" required="">         		
+		</div>
+		       		
+		<div class="form-group col-md-12">
+			<label for="senha" class="label label-default col-lg-1">Senha</label>
+			<input id="senha" type="password" maxlength="16" class="form-control" ng-model="novaConta.senha" required>                    
+		</div>
+		
+		<div class="form-group col-md-12 ">
+		    <label for="confirmarSenha" class="label label-default col-lg-2">Confirmar Senha</label>
+			<input id="confirmarSenha" type="password" maxlength="16" class="form-control" ng-model="confirmarSenha" required>                    
+		</div>
+		
+		<div class="form-group col-md-6">
+			<label for="permissao" class="label label-default col-lg-2">Escolha a permissão</label>
+			 <div class="col-md-6">
+				<div class="radio">
+			 		<label class="radio-inline"><input type="radio" name="permissao" class="radio" id="permissao" value="usuario" ng-model="novaConta.permissao">Usuário</label>
+			 		<label class="radio-inline"><input type="radio" name="permissao" class="radio" id="permissao" value="administrador" ng-model="novaConta.permissao">Administrador</label>
+				</div>		
+			</div>			
+		</div>
+		
+		<div class="form-group col-md-12">
+	        <button class="btn btn-success" value ="Salvar" ng-click="salvarNovaConta();">Salvar</button>
+			<button class="btn btn-danger" ng-click="irParaConta();">Cancelar</button>
+		</div>
+					    		
+	</form>	
+</div>

@@ -1,0 +1,44 @@
+<div>
+	<div class="col-lg-12 bloco-ferramentas" style="margin-top:45px;">
+	
+	<h4 class="form-group col-md-offset-3 col-lg-7 colorH4" >Quadros</h4>
+		
+		<div id="superiorForm" style="width:80%; height:100px; margin:0 auto; border-bottom:1px solid #ccc;">
+			<div style="float:left; margin-top:20px;">
+				<button class="btn btn-success" style="width: 135px; height: 40px;" ng-click="novoQuadro(quadro);">Novo Registro</button>
+			</div>
+	
+			<!-- <div style="float:right; margin-top:20px; margin-left:10px; width:275px;">
+				 <div class="input-group">
+					<input type="text" class="form-control" placeholder="Pesquisar...">
+					<span class="input-group-btn">
+					  <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
+			</div> -->
+		</div>	
+	</div>
+		
+	<div class="col-lg-12">
+			<table>
+				<thead>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Indicador</th>
+					<th>Ações</th>
+				<thead>
+				<tbody>
+					<tr ng-repeat="quadro in quadros" ng-class="{linhaSelecionada : quadro.selecionado}">
+						<td>{{quadro.id}}</td>											
+						<td>{{quadro.nome}}</td>
+						<td>{{quadro.indicador.nome}}</td>					
+		
+						<td style="text-align: center">
+							<div class="fa fa-pencil botao-flat" style="padding: 10px;" ng-click="alterar(quadro);"></div>
+							<div class="fa fa-trash botao-flat" style="padding: 10px;" ng-click="excluir(quadro);"></div>
+						</td>
+					</tr>
+				</tbody>	
+			</table>
+	</div>
+</div>

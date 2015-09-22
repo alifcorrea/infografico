@@ -1,0 +1,162 @@
+<div id="escolheGrafico" style="width:20%; background:red;position:relative;left:5%;">
+	<div id="graficoPizza" style="width:60px; height:60px; background:blue;" ng-click="abreEditor()">
+	</div>
+	<div id="graficoLinha" style="width:60px; height:60px; background:black;margin-top:5px;" ng-click="abreEditor()">
+	</div>
+</div>
+
+<div id="dialog" style="width: 1366px;height: 670px;background-color: rgba(0, 0, 0, 0.44); position: absolute;top: -35px;left: -80px;">
+
+<div style="width: 85%;height: 600px;background: #fff;margin: auto;margin-top: 35px;margin-left: 14%;">
+
+
+<div id="titulo" style="width: 100%;height: 30px;background-color:#48738C;color:#fff;">
+	{{titDialog}}
+</div>
+
+
+
+
+<div id="imagens" style="width: 7%;" ng-show="abreSelecionaGrafico">
+<div class="flaticon-piechart1" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoPIE(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-bars-graphic" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoColuna(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-chart59" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoColunaHorizontal(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-business54" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoArea(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-horizontal18" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoBar(); titDialog = 'Adicione valores'"></div>
+</div>
+
+<div id="formGeraGrafico" ng-show="mostraFormGraficoPizza">
+	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
+
+	<form>
+		Titulo: <input	id="uf" type="text" class="form-control" ng-model="tituloGraficoPizza">
+		 <div id="formEditor" ng-repeat="obj in objs">
+			<div class="form-group col-lg-6">
+			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			</div>
+
+			<div class="form-group col-lg-6">
+			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			</div>
+		</div>
+
+		<div class="form-group col-lg-6">
+			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			</div>
+
+			<div class="form-group col-lg-6">
+			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			</div>
+
+		<div class="form-group col-lg-1 marginBTN">
+			<span class="btn btn-primary" ng-click="geraNovoCampo()">
+				Adicionar Valor<i class="fa fa-plus"></i>
+			</span>
+		</div>
+
+		<div class="form-group col-lg-1 marginBTN" style="margin-left: 180px;">
+			<span class="btn btn-primary" ng-click="geraGraficoPizza()">
+				Gerar Grafico
+			</span>
+		</div>
+	</form>
+	</div>
+	<div id="preview" style="width:50%;float:left;">
+		<div id="container" style="min-width: 200	px; height: 200px; max-width: 400px; margin: 0 auto"></div>
+	</div>
+</div>
+
+
+
+<!--  GRAFICO 2 -->
+
+
+<div id="formGeraGrafico2" ng-show="mostraFormGraficoColuna">
+	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
+
+	<form>
+		Titulo: <input	id="uf" type="text" class="form-control" ng-model="tituloGraficoColuna">
+		<div id="formEditor" ng-repeat="obj in objs">
+			<div class="form-group col-lg-6">
+			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			</div>
+
+			<div class="form-group col-lg-6">
+			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			</div>
+		</div>
+
+		<div class="form-group col-lg-6">
+			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			</div>
+
+			<div class="form-group col-lg-6">
+			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			</div>
+
+		<div class="form-group col-lg-1 marginBTN">
+			<span class="btn btn-primary" ng-click="geraNovoCampo()">
+				Adicionar Valor<i class="fa fa-plus"></i>
+			</span>
+		</div>
+
+		<div class="form-group col-lg-1 marginBTN" style="margin-left: 180px;">
+			<span class="btn btn-primary" ng-click="geraDadosGraficoColuna()">
+				Gerar Grafico
+			</span>
+		</div>
+	</form>
+	</div>
+	<div id="preview" style="width:50%;float:left;">
+
+	<script src="http://code.highcharts.com/modules/data.js"></script>
+	<script src="http://code.highcharts.com/modules/drilldown.js"></script>
+
+<div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+	</div>
+</div>
+
+
+<!--  GRAFICO 3 -->
+
+<div id="formGeraGrafico3" ng-show="mostraFormGraficoColunaHorizontal">
+	<div>
+			Titulo: <input type="text" ng-model="linha.titulo">
+			texto: <input type="text" ng-model="linha.lateral">
+			Tipo de medida: <input type="text" ng-model="linha.tpMedida">
+	</div>
+	<div style="    float: left;    position: relative;left: 25%;margin-top: 20px;margin-bottom: 20px;">
+		Serie: <input type="text" ng-model="serie.name">
+		<div ng-click="series.push(serie); serie = null;">Adicionar Serie <i class="fa fa-plus-square-o"></i></div>
+
+
+		<!--<div ng-repeat="serie in series">{{serie.name}}</div>-->
+	</div>
+	<div style="position: relative;top: 20px;float: right;right: 28%;">
+		Categoria: <input type="text" ng-model="categoria">
+		<div ng-click="categorias.push(categoria); categoria = null;">Adicionar Categoria <i class="fa fa-plus-square-o"></i></div>
+		<!--<div ng-repeat="categoria in categorias">{{categoria}}</div>-->
+	</div>
+
+	<table>
+		<th></th>
+		<th ng-repeat="categoria in categorias track by $index">{{categoria}}</th>
+		<tr ng-repeat="serie in series track by $index">
+			<td>
+				{{serie.name}}
+			</td>
+			<td ng-repeat="categoria in categorias track by $index">
+				<input type="text" ng-model="serie.data[$index]">
+			</td>
+		</tr>
+	</table>
+	<div ng-click="gerarGrafico()">Gerar Grafico</div>
+	<div id="containerH" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</div>
+
+</div>
+
+</div>

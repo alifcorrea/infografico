@@ -1,0 +1,66 @@
+table{
+	width: 80%; 
+	position: relative; 
+	left: 10%; 
+	box-shadow: 0px 0px 2px 1px #ccc;
+	
+}
+
+thead{
+	background-color: #48738c; 
+	line-height: 40px; 
+	color: #FFF;
+}
+
+th, td{
+	text-align:left;
+	padding-left:20px;
+	border-right:1px solid #ccc;
+}
+
+.titRegistro {
+	background-color: #E4E1E1;
+	line-height: 30px;
+	font-weight: bold;
+	color: #CF6161;
+}
+
+.label-default {
+	width: 160px;
+}
+
+.marginBTN {
+	margin-top: 15px;
+	margin-left: -15px;
+}
+
+.colorH4 {
+	color: #CF6161;
+	font-weight: bold;
+}
+
+.titTabela {
+	background-color: #48738c;
+	color: #FFFFFF;
+	border-top: 2px solid #B3B3B3;
+	border-bottom: 2px solid #929292;
+	font-weight: 600;
+	font-size: 14px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.textTd {
+	text-align: left;
+	padding-left: 40px;
+	border-bottom: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+
+.hoverTr:hover {
+	background: #D1E4F7;
+}
+
+.marginTop30 {
+	margin-top: 30px;
+}
