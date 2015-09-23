@@ -7,7 +7,7 @@ angular.module('appControllers')
 	$scope.abreSelecionaGrafico = true;
 	$scope.titDialog = "Escolha um grafico";
 	$scope.tpGrafico = '';
-
+	$scope.tpMedida = '';
 
 	$scope.abreEditor = function(){
 		$scope.editor = true;
@@ -69,15 +69,14 @@ angular.module('appControllers')
             series: {
                 borderWidth: 0,
                 dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.1f}%'
+                    enabled: true
                 }
             }
         },
 
         tooltip: {
             headerFormat: '<span style="font-size:6px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> do total<br/>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}'+$scope.tpMedida+'</b> do total<br/>'
         },
 				series: [{
             colorByPoint: true,
@@ -98,7 +97,7 @@ angular.module('appControllers')
             text: $scope.tituloGraficoPizza
         },
         tooltip: {
-            pointFormat: '<b>{point.percentage:.1f}%</b>'
+            pointFormat: '<b>{point.percentage:.2f}'+$scope.tpMedida+'</b>'
         },
         series: [{
             colorByPoint: true,
