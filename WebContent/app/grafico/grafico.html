@@ -29,28 +29,29 @@
 	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
 
 	<form>
-		Titulo: <input	id="uf" type="text" class="form-control" ng-model="tituloGraficoPizza">
+		Titulo: <input	id="uf" type="text" ng-model="tituloGraficoPizza">
+			Tipo Medida: <input	id="uf" type="text" ng-model="tpMedida">
 		 <div id="formEditor" ng-repeat="obj in objs">
-			<div class="form-group col-lg-6">
-			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			<div >
+			 Chave: <input	id="nome" type="text" ng-model="obj.name">
 			</div>
 
-			<div class="form-group col-lg-6">
-			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			<div>
+			Valor: <input	id="uf" type="number"ng-model="obj.y">
 			</div>
 		</div>
 
-		<div class="form-group col-lg-6">
-			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+		<div>
+			Chave: <input	id="nome" type="text"ng-model="obj.name">
 			</div>
 
-			<div class="form-group col-lg-6">
-			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			<div >
+			Valor: <input	id="uf" type="number"ng-model="obj.y">
 			</div>
 
-		<div class="form-group col-lg-1 marginBTN">
-			<span class="btn btn-primary" ng-click="geraNovoCampo()">
-				Adicionar Valor<i class="fa fa-plus"></i>
+		<div>
+			<span ng-click="geraNovoCampo()">
+				<i class="fa fa-plus"></i>
 			</span>
 		</div>
 
@@ -75,27 +76,28 @@
 	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
 
 	<form>
-		Titulo: <input	id="uf" type="text" class="form-control" ng-model="tituloGraficoColuna">
+		Titulo: <input	id="uf" type="text" ng-model="tituloGraficoColuna">
+		Tipo Medida: <input	id="uf" type="text" ng-model="tpMedida">
 		<div id="formEditor" ng-repeat="obj in objs">
-			<div class="form-group col-lg-6">
-			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+			<div>
+			Chave:  <input	id="nome" type="text" ng-model="obj.name">
 			</div>
 
-			<div class="form-group col-lg-6">
-			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			<div>
+			Valor:  <input	id="uf" type="number" ng-model="obj.y">
 			</div>
 		</div>
 
-		<div class="form-group col-lg-6">
-			 <input	id="nome" type="text" class="form-control" ng-model="obj.name">
+		<div>
+		Chave: 	 <input	id="nome" type="text" ng-model="obj.name">
 			</div>
 
-			<div class="form-group col-lg-6">
-			 <input	id="uf" type="number" class="form-control" ng-model="obj.y">
+			<div>
+			Valor:  <input	id="uf" type="number" ng-model="obj.y">
 			</div>
 
-		<div class="form-group col-lg-1 marginBTN">
-			<span class="btn btn-primary" ng-click="geraNovoCampo()">
+		<div>
+			<span ng-click="geraNovoCampo()">
 				Adicionar Valor<i class="fa fa-plus"></i>
 			</span>
 		</div>
