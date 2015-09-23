@@ -20,10 +20,10 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 			  		TemaService.delete(
 			  			$scope.temas[i],
 			  			function(data){
-			  				console.log('Sucesso if');
+			  				console.log('Sucesso!');
 			  			},
 			  			function(data){
-			  				console.log('Errou');
+			  				console.log('Errou!');
 			  			}
 			  		);
 	  			};

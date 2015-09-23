@@ -5,7 +5,7 @@ angular.module('appControllers')
 	$scope.quadros = QuadroService.query();
 	
   	$scope.novoQuadro = function(quadro){
-  		$location.path("/quadro/cadastro/"+quadro.id);
+  		$location.path("/quadro/cadastro/");
   	};
   	
   	$scope.excluir = function (quadro) {

@@ -1,7 +1,7 @@
-masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, ContaService) {
+masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, RegiaoService) {
 	
-	$scope.contas = [];
-	$scope.contas = ContaService.query();
+	$scope.regioes = [];
+	$scope.regioes = RegiaoService.query();
 	
 	$scope.tema = new TemaService();
 	
@@ -30,10 +30,11 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 			}
 		);		
 	};
+
 	
-	$scope.escolherUsuario = function(conta){
-		$scope.tema.conta = conta;
-		$scope.campoContaNm = conta.pessoa.nome;
+	$scope.escolherRegiao = function(regiao){
+		$scope.tema.regiao = regiao;
+		$scope.nome = regiao.nome;
 	}
 	
 });

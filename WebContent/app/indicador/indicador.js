@@ -56,7 +56,6 @@ angular.module('appControllers')
 	  			}
 	  		);
   		};
-
   	}
 
 

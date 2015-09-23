@@ -3,7 +3,9 @@ package br.com.infografico.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.infografico.dto.RegiaoDTO;
 import br.com.infografico.dto.TemaDTO;
+import br.com.infografico.entidades.Regiao;
 import br.com.infografico.entidades.Tema;
 import br.com.infografico.repositories.TemaRepository;
 
@@ -21,11 +23,7 @@ public class TemaService {
 				
 				TemaDTO dto = new TemaDTO();
 				dto.id = tema.getId();
-				dto.nome = tema.getNome();
-				dto.conta = tema.getConta();
-				dto.conta.getPessoa().setConta(null);				
-				dto.conta.setTemas(null);
-				
+				dto.nome = tema.getNome();							
 				temasDTO.add(dto);
 			}
 		}
@@ -36,11 +34,15 @@ public class TemaService {
 
 	public void salvar(TemaDTO dto) {
 
-		Tema tema = new Tema();
-		
+		Tema tema = new Tema();		
 		tema.setId(dto.id);
 		tema.setNome(dto.nome);
-		tema.setConta(dto.conta);
+		
+		Regiao regiao = new Regiao();		
+		RegiaoDTO regiaodto = dto.regiao;
+		regiao.setId(regiaodto.id);
+		regiao.setNome(regiaodto.nome);		
+		tema.setRegiao(regiao);	
 		
 		if(tema.getId() != 0){
 			temaRepository.atualizar(tema);
@@ -53,14 +55,16 @@ public class TemaService {
 	public TemaDTO buscarTemaPeloId(Long id) {
 		
 		Tema tema = temaRepository.findById(id);
-		TemaDTO dto = new TemaDTO();
-			
+		TemaDTO dto = new TemaDTO();			
 		dto.id = tema.getId();
 		dto.nome = tema.getNome();
-		dto.conta = tema.getConta();
-		dto.conta.getPessoa().setConta(null);
-		dto.conta.getTemas().add(null);
 		
+		RegiaoDTO regiaoDTO = new RegiaoDTO();
+		regiaoDTO.id = tema.getRegiao().getId();
+		regiaoDTO.nome = tema.getRegiao().getNome();
+		
+		dto.regiao = regiaoDTO;
+			
 		return dto;
 	}
 

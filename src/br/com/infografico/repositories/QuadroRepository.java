@@ -13,7 +13,7 @@ public class QuadroRepository extends GenericRepository<Quadro>{
 		}
 		
 		public List<Quadro> buscarTodos(){
-			Query query = getEntityManager().createQuery("select q from quadro q");
+			Query query = getEntityManager().createQuery("select q from Quadro q");
 			return query.getResultList();
 		}
 
