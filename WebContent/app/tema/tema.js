@@ -2,6 +2,7 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 
 	$scope.temas = new TemaService();
 	
+	console.log($scope.temas);
 	TemaService.query(
 		  function(data){
 			  $scope.temas = data;
@@ -20,10 +21,11 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 			  		TemaService.delete(
 			  			$scope.temas[i],
 			  			function(data){
-			  				console.log('Sucesso if');
+			  				$scope.temas = TemaService.query();
+			  				console.log('Sucesso!');
 			  			},
 			  			function(data){
-			  				console.log('Errou');
+			  				console.log('Errou!');
 			  			}
 			  		);
 	  			};
@@ -34,6 +36,7 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 	  				id: tema.id
 	  			},
 	  			function(data){
+	  				$scope.temas = TemaService.query();
 	  				console.log('Sucesso else');
 	  			},
 	  			function(data){
