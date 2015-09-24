@@ -11,9 +11,6 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 		TemaService.get({id: idTema},
 			function(data){
 				$scope.tema = data;
-				
-				document.getElementById('nmPessoa').value = data.conta.pessoa.nome;
-				document.getElementById('nome').focus();
 			}
 		);
 	}
@@ -21,12 +18,9 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 	$scope.salvar = function(){		
 		$scope.tema.$save({id: null},
 			function(){
-				console.log($scope.tema);
-				alert('sucesso!!');
 				$location.path("/tema");
 			},
 			function(response){
-				alert('erro!!');
 			}
 		);		
 	};
@@ -34,7 +28,11 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 	
 	$scope.escolherRegiao = function(regiao){
 		$scope.tema.regiao = regiao;
-		$scope.nome = regiao.nome;
+		$scope.tema.regiao.nome = regiao.nome;
 	}
+	
+	$scope.alterarTema = function(tema){
+		$location.path("/tema/cadastro/"+tema.id);
+	};
 	
 });

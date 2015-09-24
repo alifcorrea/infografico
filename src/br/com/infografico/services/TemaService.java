@@ -23,13 +23,19 @@ public class TemaService {
 				
 				TemaDTO dto = new TemaDTO();
 				dto.id = tema.getId();
-				dto.nome = tema.getNome();							
+				dto.nome = tema.getNome();		
+				
+				RegiaoDTO regiaoDTO = new RegiaoDTO();
+				regiaoDTO.id = tema.getRegiao().getId();
+				regiaoDTO.nome = tema.getRegiao().getNome();
+				dto.regiao = regiaoDTO;
+
 				temasDTO.add(dto);
+				System.out.println(dto);
 			}
 		}
 		
-		return temasDTO;
-			
+		return temasDTO;		
 	}
 
 	public void salvar(TemaDTO dto) {
