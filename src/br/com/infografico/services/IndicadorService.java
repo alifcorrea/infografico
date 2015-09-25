@@ -70,17 +70,22 @@ public class IndicadorService {
 
 	public boolean salvar(IndicadorDTO dto) {
 
-		IndicadorDTO indicador = new IndicadorDTO();
-
-		/*indicador.setId(dto.id);
+		Indicador indicador = new Indicador();		
+		indicador.setId(dto.id);
 		indicador.setNome(dto.nome);
-		indicador.setTema(dto.tema.id);
+		
+		Tema tema = new Tema();
+		tema.setId(dto.tema.id);
+		tema.setIndicadores(null);
+		tema.setNome(dto.tema.nome);
+		tema.setRegiao(dto.tema.getRegiao());		
+		indicador.setTema(tema);
 
 		if(indicador.getId() != 0){
 			indicadorRepository.atualizar(indicador);
 		}else{
 			indicadorRepository.salvar(indicador);
-		}*/
+		}
 		return true;
 	}
 

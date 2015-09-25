@@ -50,6 +50,8 @@ public class TemaService {
 		regiao.setNome(regiaodto.nome);		
 		tema.setRegiao(regiao);	
 		
+		tema.setIndicadores(null);
+		
 		if(tema.getId() != 0){
 			temaRepository.atualizar(tema);
 		}else{			

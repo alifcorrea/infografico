@@ -111,13 +111,17 @@ masterGraphicsApp.config(function($routeProvider, $locationProvider){
       templateUrl : 'app/indicador/indicador.html',
       controller: 'IndicadorCtrl',
    })
-
-   // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
-   .when('/indicador/cadastro', {
+   
+    .when('/indicador/cadastro', {
       templateUrl : 'app/indicador/novo-indicador.html',
-      controller     : 'NovoIndicadorCtrl',
+      controller: 'NovoIndicadorCtrl',
    })
-
+   
+   .when('/indicador/:id', {
+      templateUrl : 'app/indicador/indicador.html',
+      controller: 'IndicadorCtrl',
+   })   
+   
    .when('/indicador/cadastro/:id', {
       templateUrl : 'app/indicador/novo-indicador.html',
       controller: 'NovoIndicadorCtrl',
