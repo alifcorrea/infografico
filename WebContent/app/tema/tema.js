@@ -8,6 +8,10 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 		  	}, function(response){
 		}
 	);
+	
+	$scope.registrarTema = function(){
+		$location.path("/tema/cadastro");
+	};
 
 	$scope.excluirTema = function (tema){		
 		
@@ -20,10 +24,11 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 			  		TemaService.delete(
 			  			$scope.temas[i],
 			  			function(data){
-			  				console.log('Sucesso if');
+			  				$scope.temas = TemaService.query();
+			  				console.log('Sucesso!');
 			  			},
 			  			function(data){
-			  				console.log('Errou');
+			  				console.log('Errou!');
 			  			}
 			  		);
 	  			};
@@ -34,6 +39,7 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 	  				id: tema.id
 	  			},
 	  			function(data){
+	  				$scope.temas = TemaService.query();
 	  				console.log('Sucesso else');
 	  			},
 	  			function(data){
@@ -48,10 +54,6 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 			}, function(response){
 		});
 	}
-		
-	$scope.registrarTema = function(){
-		$location.path("/tema/cadastro");
-	};
 	
 	$scope.alterarTema = function(tema){
 		$location.path("/tema/cadastro/"+tema.id);
