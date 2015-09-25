@@ -1,7 +1,7 @@
-masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, ContaService) {
+masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, RegiaoService) {
 	
-	$scope.contas = [];
-	$scope.contas = ContaService.query();
+	$scope.regioes = [];
+	$scope.regioes = RegiaoService.query();
 	
 	$scope.tema = new TemaService();
 	
@@ -11,9 +11,6 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 		TemaService.get({id: idTema},
 			function(data){
 				$scope.tema = data;
-				
-				document.getElementById('nmPessoa').value = data.conta.pessoa.nome;
-				document.getElementById('nome').focus();
 			}
 		);
 	}
@@ -21,19 +18,21 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 	$scope.salvar = function(){		
 		$scope.tema.$save({id: null},
 			function(){
-				console.log($scope.tema);
-				alert('sucesso!!');
 				$location.path("/tema");
 			},
 			function(response){
-				alert('erro!!');
 			}
 		);		
 	};
+
 	
-	$scope.escolherUsuario = function(conta){
-		$scope.tema.conta = conta;
-		$scope.campoContaNm = conta.pessoa.nome;
+	$scope.escolherRegiao = function(regiao){
+		$scope.tema.regiao = regiao;
+		$scope.tema.regiao.nome = regiao.nome;
 	}
+	
+	$scope.alterarTema = function(tema){
+		$location.path("/tema/cadastro/"+tema.id);
+	};
 	
 });

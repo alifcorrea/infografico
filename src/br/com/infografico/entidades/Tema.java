@@ -22,9 +22,11 @@ public class Tema {
 	public long id;
 	@Column(name = "nome")
 	public String nome;
+	
 	@ManyToOne
-	@JoinColumn(name = "id_conta")
-	private Conta conta;	
+	@JoinColumn(name = "id_regiao")
+	private Regiao regiao;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tema")
 	private List<Indicador> indicadores;
 
@@ -44,12 +46,12 @@ public class Tema {
 		this.nome = nome;
 	}
 
-	public Conta getConta() {
-		return conta;
+	public Regiao getRegiao() {
+		return regiao;
 	}
 
-	public void setConta(Conta conta) {
-		this.conta = conta;
+	public void setRegiao(Regiao regiao) {
+		this.regiao = regiao;
 	}
 
 	public List<Indicador> getIndicadores() {
