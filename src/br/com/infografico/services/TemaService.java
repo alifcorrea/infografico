@@ -43,7 +43,6 @@ public class TemaService {
 	}
 
 	public boolean salvar(TemaDTO dto) {
-
 	
 		try{
 				Tema tema = null;

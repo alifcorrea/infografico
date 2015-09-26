@@ -42,7 +42,7 @@ public class TemaRest {
 		}			
 	}
 	
-	@GET
+/*	@GET
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -50,7 +50,7 @@ public class TemaRest {
 	
 		TemaDTO temaDTO = temaService.buscarTemaPeloId(id);
 		return Response.ok(Json.toJson(temaDTO)).build();
-	}
+	}*/
 
 	@DELETE
 	@Path("/{id}")

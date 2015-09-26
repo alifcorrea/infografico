@@ -1,4 +1,7 @@
 masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, RegiaoService) {
+
+	$scope.regioes = [];
+	$scope.regioes = RegiaoService.query();
 	
 	$scope.tema = [];
 	$scope.tema = new TemaService();
@@ -22,10 +25,10 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 				$location.path("/tema");
 			},
 			function(response){
-				alert('erro!!');
 			}
 		);		
 	};
+
 
 	$scope.escolherRegiao = function(regiao){
 		$scope.tema.regiao = regiao;
@@ -35,4 +38,5 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 	$scope.alterarTema = function(tema){
 		$location.path("/tema/cadastro/"+tema.id);
 	};
+
 });

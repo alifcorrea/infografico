@@ -2,6 +2,7 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 
 	$scope.temas = new TemaService();
 	
+	console.log($scope.temas);
 	TemaService.query(
 		  function(data){
 			  $scope.temas = data;
@@ -59,8 +60,8 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 		$location.path("/tema/cadastro/"+tema.id);
 	};
 	 
-	$scope.listaIndicadores = function(){
-		$location.path("/indicador");
+	$scope.listaIndicadores = function(tema){
+		$location.path("/indicador/"+tema.id);
 	};
   
   });
