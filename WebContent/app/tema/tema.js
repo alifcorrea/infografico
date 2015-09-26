@@ -9,6 +9,10 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 		  	}, function(response){
 		}
 	);
+	
+	$scope.registrarTema = function(){
+		$location.path("/tema/cadastro");
+	};
 
 	$scope.excluirTema = function (tema){		
 		
@@ -51,10 +55,6 @@ angular.module('appControllers').controller('TemaCtrl', function ($scope, $locat
 			}, function(response){
 		});
 	}
-		
-	$scope.registrarTema = function(){
-		$location.path("/tema/cadastro");
-	};
 	
 	$scope.alterarTema = function(tema){
 		$location.path("/tema/cadastro/"+tema.id);

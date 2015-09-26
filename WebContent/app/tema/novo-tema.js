@@ -1,9 +1,13 @@
 masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaService, RegiaoService) {
-	
+
 	$scope.regioes = [];
 	$scope.regioes = RegiaoService.query();
 	
+	$scope.tema = [];
 	$scope.tema = new TemaService();
+	
+	$scope.regioes = [];
+	$scope.regioes = RegiaoService.query();
 	
 	var idTema = $location.path().split(/[\s/]+/).pop();	
 	
@@ -25,7 +29,7 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 		);		
 	};
 
-	
+
 	$scope.escolherRegiao = function(regiao){
 		$scope.tema.regiao = regiao;
 		$scope.tema.regiao.nome = regiao.nome;
@@ -34,5 +38,5 @@ masterGraphicsApp.controller('NovoTemaCtrl', function ($scope, $location, TemaSe
 	$scope.alterarTema = function(tema){
 		$location.path("/tema/cadastro/"+tema.id);
 	};
-	
+
 });
