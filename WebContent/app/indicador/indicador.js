@@ -1,22 +1,31 @@
 angular.module('appControllers')
-.controller('IndicadorCtrl', function ($scope, $location, IndicadorService, TemaService) {
-
+.controller('IndicadorCtrl', function ($scope, $location, IndicadorService, TemaService, parametroTema) {
+	
+	/* PARAMETRO PASSADO DO TEMA */
+	$scope.idTema = $location.path().split(/[\s/]+/).pop();		
+	parametroTema.setIdentificacaoTema($scope.idTema);
+	/* FIM PARAMETRO PASSADO DO TEMA */
+	
 	$scope.indicadores = [];
 	$scope.indicadores = IndicadorService.query();
 
-	$scope.temas = [];
-	$scope.temas = TemaService.query();
-
-	$scope.temaIndicador = function () {
-
-		$scope.indicadores;
-		$scope.temas;
+	$scope.novoIndicador = function(){
+		$location.path("/indicador/cadastro");
 	};
-
-  	$scope.novoIndicador = function(){
-  		$location.path("/indicador/cadastro");
-  	};
-
+	
+	$scope.temas = [];
+	TemaService.query(function(data){
+		$scope.temas = data;
+		$scope.NomeTema = "";;
+	  	
+	  	for ( var i = 0; i < $scope.temas.length; i++) {  		
+	  		if($scope.temas[i].id == $scope.idTema){  			
+	  			$scope.NomeTema = $scope.temas[i].nome;
+	  		}
+		}
+	});  	
+	
+	
   	$scope.excluir = function (indicador) {
 
   		var confirmacao = confirm("Deseja realmente excluir este registro?");
@@ -57,12 +66,10 @@ angular.module('appControllers')
 	  		);
   		};
   	}
-
+  	
 
   $scope.alterar = function(indicador){
-  	$location.path("/indicador/cadastro/"+indicador.id);
+	  $location.path("/indicador/cadastro/"+indicador.id);
   };
-
-
 
  });

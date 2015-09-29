@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RegiaoDTO {
 
-	public long id;
+	public Long id;
 	public String nome;
 	//public Conta conta;
 	public ContaDTO conta;

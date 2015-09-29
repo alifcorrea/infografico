@@ -10,12 +10,14 @@ import br.com.infografico.entidades.Cidade;
 import br.com.infografico.entidades.Conta;
 import br.com.infografico.entidades.Pessoa;
 import br.com.infografico.entidades.Regiao;
+import br.com.infografico.repositories.ContaRepository;
 import br.com.infografico.repositories.RegiaoRepository;
 
 public class RegiaoService {
 
 	RegiaoRepository regiaoRepository = new RegiaoRepository();
-	
+	ContaRepository contaRepository = new ContaRepository();
+ 	
 	public List<RegiaoDTO> buscaRegioes(){
 		
 		List<Regiao> regioes = regiaoRepository.buscarTodos();
@@ -49,38 +51,49 @@ public class RegiaoService {
 
 	public void salvar(RegiaoDTO dto) {
 
-		Regiao regiao = new Regiao();
-		
-		regiao.setId(dto.id);
-		regiao.setNome(dto.nome);
-		//regiao.setConta(dto.conta);
-		
-		Conta conta = new Conta();
-		ContaDTO contadto = dto.conta;
-		conta.setId(contadto.id);
-		conta.setEmail(contadto.email);
-		conta.setSenha(contadto.senha);
-		conta.setPermissao(contadto.permissao);
-		conta.setPessoa(contadto.pessoa);
-		regiao.setConta(conta);
-		
-		List<Cidade> cidades = new ArrayList<Cidade>();	
-		for (CidadeDTO key : dto.cidades) {
-			Cidade cidade = new Cidade();
-			cidade.setId(key.id);
-			cidade.setNome(key.nome);
-			cidade.setUf(key.uf);
-			cidade.setRegiao(regiao);
-			cidades.add(cidade);
+		try{
+			Regiao regiao = null;
+			
+			if(dto.id != null) {
+				regiao = regiaoRepository.findById(dto.id);
+				regiao.setId(dto.id);
+			}else {
+				regiao = new Regiao();
+				  }
+			
+			regiao.setNome(dto.nome);
+			
+			Conta conta = null;
+			if(dto.conta.id != null){
+				conta = contaRepository.findById(dto.conta.id);
+			}
+			
+			conta.setId(dto.conta.id);
+			conta.setEmail(dto.conta.email);
+			conta.setSenha(dto.conta.senha);
+			conta.setPermissao(dto.conta.permissao);
+			conta.setPessoa(dto.conta.pessoa);
+			regiao.setConta(conta);
+			
+			List<Cidade> cidades = new ArrayList<Cidade>();	
+			for (CidadeDTO key : dto.cidades) {
+				Cidade cidade = new Cidade();
+				cidade.setId(key.id);
+				cidade.setNome(key.nome);
+				cidade.setUf(key.uf);
+				cidade.setRegiao(regiao);
+				cidades.add(cidade);
+			}
+			regiao.setCidades(cidades);
+			
+			if(regiao.getId() != 0){
+				regiaoRepository.atualizar(regiao);
+			}else{
+				regiaoRepository.salvar(regiao);	
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		regiao.setCidades(cidades);
-		
-		if(regiao.getId() != 0){
-			regiaoRepository.atualizar(regiao);
-		}else{
-			regiaoRepository.salvar(regiao);
-		}
-		
 	}
 
 	public RegiaoDTO buscarRegiaoPeloId(Long id) {
