@@ -288,59 +288,55 @@ $scope.abriGrafico3D = function(){
 
 $scope.geraGrafico3D = function(){
 
-	$('#containerRe').highcharts({
+	for (var i = 0; i < $scope.series.length; i++) {
+		$scope.series[i].pointPlacement = 'on';
+		$scope.series[i].data = Object.keys($scope.series[i].data).map(function (key) {return parseInt($scope.series[i].data[key])});
+	}
+
+	console.log($scope.series);
+
+	$('#containerLin').highcharts({
+
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 0,
-            plotShadow: false
+            polar: true,
+            type: 'line'
         },
+
         title: {
-            text: 'Browser<br>shares<br>2015',
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 40
+            text: $scope.linha.titulo,
+            x: -80
         },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: $scope.categorias,
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
         },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    enabled: true,
-                    distance: -50,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'white',
-                        textShadow: '0px 1px 2px black'
-                    }
-                },
-                startAngle: -90,
-                endAngle: 90,
-                center: ['50%', '75%']
-            }
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
         },
-        series: [{
-            type: 'pie',
-            name: 'Browser share',
-            innerSize: '50%',
-            data: [
-                ['Firefox',   10.38],
-                ['IE',       56.33],
-                ['Chrome', 24.03],
-                ['Safari',    4.77],
-                ['Opera',     0.91],
-								['Rodrigo',     16.9],
-								['Venturi',     0.20],
-								['Hahaha',     7.36],
-                {
-                    name: 'Proprietary or Undetectable',
-                    y: 0.2,
-                    dataLabels: {
-                        enabled: false
-                    }
-                }
-            ]
-        }]
+
+        series: $scope.series
+
     });
 
 }
