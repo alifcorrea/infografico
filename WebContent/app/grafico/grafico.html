@@ -10,11 +10,11 @@
 <div id="imagens" style="width: 7%;" ng-show="abreSelecionaGrafico">
 <div class="flaticon-piechart1" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoPIE(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-bars-graphic" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoColuna(); titDialog = 'Adicione valores'"></div>
-<div class="flaticon-increasing5" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoColunaHorizontal(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-chart59" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoColunaHorizontal(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-business54" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoArea(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-horizontal18" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoBar(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-circular118" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoVel(); titDialog = 'Adicione valores'"></div>
-<div class="flaticon-chart59" style="cursor:pointer;font-size: 65px;"ng-click="abriGrafico3D(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-circular121" style="cursor:pointer;font-size: 65px;"ng-click="abriGrafico3D(); titDialog = 'Adicione valores'"></div>
 </div>
 
 <div id="formGeraGrafico" ng-show="mostraFormGraficoPizza">
@@ -174,42 +174,23 @@ Valor: <input type="number" ng-model="valorVel">
 
 <div id="formGeraGrafico5" ng-show="mostraFormGrafico3D">
 
-	<div>
-			Titulo: <input type="text" ng-model="linha.titulo">
-	</div>
 
-	<div style="    float: left;    position: relative;left: 25%;margin-top: 20px;margin-bottom: 20px;">
-		Serie: <input type="text" ng-model="serie.name">
-		<div ng-click="series.push(serie); serie = null;">Adicionar Serie <i class="fa fa-plus-square-o"></i></div>
+	Serie: <input type="text" ng-model="serie.name">
+	<div ng-click="series.push(serie); serie = null;">Adicionar Serie <i class="fa fa-plus-square-o"></i></div>
 
-
-		<!--<div ng-repeat="serie in series">{{serie.name}}</div>-->
-	</div>
-	<div style="position: relative;top: 20px;float: right;right: 28%;">
-		Categoria: <input type="text" ng-model="categoria">
-		<div ng-click="categorias.push(categoria); categoria = null;">Adicionar Categoria <i class="fa fa-plus-square-o"></i></div>
-		<!--<div ng-repeat="categoria in categorias">{{categoria}}</div>-->
-	</div>
-
-	<table>
-		<th></th>
-		<th ng-repeat="categoria in categorias track by $index">{{categoria}}</th>
-		<tr ng-repeat="serie in series track by $index">
-			<td>
-				{{serie.name}}
-			</td>
-			<td ng-repeat="categoria in categorias track by $index">
-				<input type="text" ng-model="serie.data[$index]">
-			</td>
-		</tr>
-	</table>
+	<tr ng-repeat="serie in series track by $index">
+		<td>
+			{{serie.name}}
+		</td>
+	</tr>
 
 <button ng-click="geraGrafico3D()"> GERAR </button>
 
-<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-<div id="containerLin" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+<div id="containerRe" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
 
 </div>
 
