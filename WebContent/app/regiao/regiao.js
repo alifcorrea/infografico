@@ -6,7 +6,7 @@ angular.module('appControllers').controller('RegiaoCtrl', function ($scope, $loc
 		  function(data){
 			  $scope.regioes = data;
 		  }, function(response){
-		  }
+		 }
 	);
 	
 	
@@ -35,6 +35,7 @@ angular.module('appControllers').controller('RegiaoCtrl', function ($scope, $loc
 	  			},
 	  			function(data){
 	  				console.log('Sucesso else');
+	  				$scope.regioes = RegiaoService.query();
 	  			},
 	  			function(data){
 	  				console.log('Errou');
@@ -46,7 +47,7 @@ angular.module('appControllers').controller('RegiaoCtrl', function ($scope, $loc
 	  			  function(data){
 	  				  $scope.regioes = data;
 	  			  }, function(response){
-	  			  }
+	  		}
 	  	); 
 	}
 		
