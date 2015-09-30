@@ -21,8 +21,10 @@
 	<script src="js/angular-resource.js"></script>
 </head>
 
-<body ng-controller="IndexCtrl">
-
+<body style="height: calc(100%); width: calc(100%);" ng-controller="IndexCtrl">
+	
+	<div id="menuSuperior" style="width:100%; height:35px;"></div>
+	
     <header>
 		<nav>
 			<ul>
@@ -30,7 +32,7 @@
 					<a href="#/conta/">
 						<span><i class="fa fa-users"></i></span>
 						<div class="nav-item-wrap" >
-							<p>Usuï¿½rios</p>
+							<p>Usuários</p>
 						</div>
 					</a>
 				</li>
@@ -38,7 +40,7 @@
 					<a href="#/regiao/">
 						<span><i class="fa fa-map-marker"></i></span>
 						<div class="nav-item-wrap">
-							<p>Regiï¿½es</p>
+							<p>Regiões</p>
 						</div>
 					</a>
 				</li>
@@ -54,17 +56,20 @@
 					<a href="#/grafico/">
 						<span><i class="fa fa-area-chart"></i></span>
 						<div class="nav-item-wrap">
-							<p>Grï¿½ficos</p>
+							<p>Gráficos</p>
 						</div>
 					</a>
 				</li>
 			</ul>
 		</nav>
 	</header>
-
+	
+	<div style="height: 100%; position: fixed; width: calc(100% - 200px); left: 80px;">
 		<div id="main">
 			<div ng-view></div>
 		</div>
+	</div>
+		
 </body>
 
 	<!-- Os Demais arquivos que carregar depois do BODY para melhorar o tempo de carregamento -->
@@ -87,6 +92,7 @@
 	<script src="app/indicador/indicador.js"></script>
 	<script src="app/indicador/novo-indicador.js"></script>
 	<script src="app/indicador/indicador-service.js"></script>
+	<script src="app/indicador/tema-service.js"></script>
 
 	<script src="app/quadro/quadro.js"></script>
 	<script src="app/quadro/novo-quadro.js"></script>

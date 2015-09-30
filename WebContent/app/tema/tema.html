@@ -32,7 +32,7 @@
 			<tbody>
 				<tr ng-repeat="tema in temas">
 					<td>{{tema.id}}</td>
-					<td ><a href="" ng-click="listaIndicadores()">{{tema.nome}}</a></td>
+					<td ><a href="" ng-click="listaIndicadores(tema)">{{tema.nome}}</a></td>
 					<td>{{tema.regiao.nome}}</td>
 					<td>
 						<div class="fa fa-pencil" style="padding: 10px;" ng-click="alterarTema(tema);"></div>

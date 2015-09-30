@@ -109,6 +109,7 @@ angular.module('appControllers')
 	$scope.mostraFormGraficoColunaHorizontal = false;
 	$scope.mostraFormCategoria = true;
 	$scope.mostraFormSeries = false;
+	$scope.mostraFormGraficoVel = false;
 
 	$scope.trocaTelaCategoriaParaSerie = function(){
 		$scope.mostraFormCategoria = false;
@@ -134,9 +135,8 @@ angular.module('appControllers')
 		$scope.tpGrafico = 'bar';
 	}
 
-
 	$scope.series = [];
-	  $scope.categorias = [];
+	$scope.categorias = [];
 
 		$scope.linha = {};
 
@@ -179,6 +179,170 @@ angular.module('appControllers')
 	    });
 	  };
 
+		$scope.abriGraficoVel = function(){
+			$scope.abreSelecionaGrafico = false;
+			$scope.mostraFormGraficoVel = true;
+		};
 
+		$scope.geraGraficoVel = function(){
+
+			$scope.objVel = {};
+			$scope.objVel.name = $scope.chaveVel;
+			$scope.objVel.data = [];
+			$scope.objVel.data.push($scope.valorVel);
+
+
+    $('#containerV').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: $scope.tituloVel
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 1,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            plotBands: [{
+                from: 0,
+                to: 0.3,
+                color: '#DF5353' // red
+            }, {
+                from: 0.3,
+                to: 0.6,
+                color: '#DDDF0D' // yellow
+            }, {
+                from: 0.6,
+                to: 1,
+								color: '#55BF3B' // green
+            }]
+        },
+
+        series: [$scope.objVel]
+
+    });
+}
+
+$scope.abriGrafico3D = function(){
+	$scope.abreSelecionaGrafico = false;
+	$scope.mostraFormGrafico3D = true;
+};
+
+	$scope.rels = [];
+
+$scope.geraGrafico3D = function(){
+
+	$('#containerRe').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: 'Browser<br>shares<br>2015',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 40
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            innerSize: '50%',
+            data: [
+                ['Firefox',   10.38],
+                ['IE',       56.33],
+                ['Chrome', 24.03],
+                ['Safari',    4.77],
+                ['Opera',     0.91],
+								['Rodrigo',     16.9],
+								['Venturi',     0.20],
+								['Hahaha',     7.36],
+                {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            ]
+        }]
+    });
+
+}
 
  });
