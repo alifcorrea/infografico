@@ -279,6 +279,106 @@ angular.module('appControllers')
     });
 }
 
+$scope.abriGraficoVel2 = function(){
+	$scope.abreSelecionaGrafico = false;
+	$scope.mostraFormGraficoVel2 = true;
+}
+
+$scope.geraGraficoVel2 = function(){
+
+	$scope.objVel = {};
+	$scope.objVel.name = $scope.chaveVel;
+	$scope.objVel.data = [];
+	$scope.objVel.data.push($scope.valorVel)
+	$scope.objVel.dataLabels = {};
+	$scope.objVel.dataLabels.format = '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                       '<span style="font-size:12px;color:silver"></span></div>'
+
+	$scope.objVel.tooltip = {};
+	$scope.objVel.tooltip.valueSuffix = 'KM/h';
+
+
+console.log($scope.tituloVel);
+
+
+	var gaugeOptions = {
+
+			chart: {
+					type: 'solidgauge'
+			},
+
+			title: null,
+
+			pane: {
+					center: ['50%', '85%'],
+					size: '140%',
+					startAngle: -90,
+					endAngle: 90,
+					background: {
+							backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+							innerRadius: '60%',
+							outerRadius: '100%',
+							shape: 'arc'
+					}
+			},
+
+			tooltip: {
+					enabled: false
+			},
+
+			// the value axis
+			yAxis: {
+					stops: [
+							[0.1, '#DF5353'],  // red
+							[0.5, '#DDDF0D'], // yellow
+							[0.9, '#55BF3B']	// green
+					],
+					lineWidth: 0,
+					minorTickInterval: null,
+					tickPixelInterval: 400,
+					tickWidth: 0,
+					title: {
+							y: -70
+					},
+					labels: {
+							y: 16
+					}
+			},
+
+			plotOptions: {
+					solidgauge: {
+							dataLabels: {
+									y: 5,
+									borderWidth: 0,
+									useHTML: true
+							}
+					}
+			}
+	};
+
+	// The speed gauge
+	$('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+			yAxis: {
+					min: 0,
+					max: 1,
+					title: {
+							text: $scope.tituloVel
+					}
+			},
+
+			credits: {
+					enabled: false
+			},
+
+			series: [$scope.objVel]
+
+	}));
+
+
+
+}
+
 $scope.abriGrafico3D = function(){
 	$scope.abreSelecionaGrafico = false;
 	$scope.mostraFormGrafico3D = true;
@@ -292,8 +392,6 @@ $scope.geraGrafico3D = function(){
 		$scope.series[i].pointPlacement = 'on';
 		$scope.series[i].data = Object.keys($scope.series[i].data).map(function (key) {return parseInt($scope.series[i].data[key])});
 	}
-
-	console.log($scope.series);
 
 	$('#containerLin').highcharts({
 

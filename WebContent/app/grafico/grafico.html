@@ -7,7 +7,7 @@
 	{{titDialog}}
 </div>
 
-<div id="imagens" style="width: 7%;" ng-show="abreSelecionaGrafico">
+<div id="imagens" style="width: 7%;float:left;" ng-show="abreSelecionaGrafico">
 <div class="flaticon-piechart1" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoPIE(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-bars-graphic" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoColuna(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-increasing5" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoColunaHorizontal(); titDialog = 'Adicione valores'"></div>
@@ -16,6 +16,10 @@
 <div class="flaticon-circular118" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoVel(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-chart59" style="cursor:pointer;font-size: 65px;"ng-click="abriGrafico3D(); titDialog = 'Adicione valores'"></div>
 </div>
+<div id="imagens1" style="width: 7%;float:left;margin-left:50px;" ng-show="abreSelecionaGrafico">
+<div class="flaticon-increasing5" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoVel2(); titDialog = 'Adicione valores'"></div>
+</div>
+
 
 <div id="formGeraGrafico" ng-show="mostraFormGraficoPizza">
 	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
@@ -167,6 +171,30 @@ Valor: <input type="number" ng-model="valorVel">
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <div id="containerV" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+
+
+
+</div>
+
+<div id="formGeraGrafico4" ng-show="mostraFormGraficoVel2">
+
+
+
+
+Titulo: <input type="text" ng-model="tituloVel">
+Valor: <input type="number" ng-model="valorVel">
+<button ng-click="geraGraficoVel2()"> GERAR </button>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
+
+<div style="width: 600px; height: 400px; margin: 0 auto">
+	<div id="container-speed" style="width: 300px; height: 200px; float: left"></div>
+	<div id="container-rpm" style="width: 300px; height: 200px; float: left"></div>
+</div>
+
 
 
 
