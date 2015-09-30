@@ -3,15 +3,19 @@ package br.com.infografico.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.infografico.dto.IndicadorDTO;
 import br.com.infografico.dto.RegiaoDTO;
 import br.com.infografico.dto.TemaDTO;
+import br.com.infografico.entidades.Indicador;
 import br.com.infografico.entidades.Regiao;
 import br.com.infografico.entidades.Tema;
+import br.com.infografico.repositories.RegiaoRepository;
 import br.com.infografico.repositories.TemaRepository;
 
 public class TemaService {
 
 	TemaRepository temaRepository = new TemaRepository();
+	RegiaoRepository regiaoRepository = new RegiaoRepository();
 	
 	public List<TemaDTO> buscaTemas(){		
 		
@@ -20,7 +24,7 @@ public class TemaService {
 
 		if(temasDTO != null){			
 			for (Tema tema : temas) {
-				
+		
 				TemaDTO dto = new TemaDTO();
 				dto.id = tema.getId();
 				dto.nome = tema.getNome();		
@@ -38,26 +42,39 @@ public class TemaService {
 		return temasDTO;		
 	}
 
-	public void salvar(TemaDTO dto) {
-
-		Tema tema = new Tema();		
-		tema.setId(dto.id);
-		tema.setNome(dto.nome);
+	public boolean salvar(TemaDTO dto) {
+	
+		try{
+				Tema tema = null;
 		
-		Regiao regiao = new Regiao();		
-		RegiaoDTO regiaodto = dto.regiao;
-		regiao.setId(regiaodto.id);
-		regiao.setNome(regiaodto.nome);		
-		tema.setRegiao(regiao);	
+				if(dto.id != null) {
+					tema = temaRepository.findById(dto.id);
+					tema.setId(dto.id);
+				}else {
+						tema = new Tema();
+					  }
+				tema.setNome(dto.nome);
+				
+				Regiao regiao = null;
+				if(dto.regiao.id != null){
+					regiao = regiaoRepository.findById(dto.regiao.id);
+				}
+	
+				regiao.setId(dto.regiao.id);
+				regiao.setNome(dto.regiao.nome);		
+				tema.setRegiao(regiao);	
+				
+				if(tema.getId()!= 0){
+					temaRepository.atualizar(tema);
+				}else{			
+						temaRepository.salvar(tema);
+					 }
+			return true;
 		
-		tema.setIndicadores(null);
-		
-		if(tema.getId() != 0){
-			temaRepository.atualizar(tema);
-		}else{			
-			temaRepository.salvar(tema);
-		}
-		
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}	
 	}
 
 	public TemaDTO buscarTemaPeloId(Long id) {
@@ -69,9 +86,17 @@ public class TemaService {
 		
 		RegiaoDTO regiaoDTO = new RegiaoDTO();
 		regiaoDTO.id = tema.getRegiao().getId();
-		regiaoDTO.nome = tema.getRegiao().getNome();
-		
+		regiaoDTO.nome = tema.getRegiao().getNome();		
 		dto.regiao = regiaoDTO;
+	
+		List<IndicadorDTO> indicadoresDTO = new ArrayList<IndicadorDTO>();		
+		for (Indicador indicador : tema.getIndicadores()) {
+			IndicadorDTO indicadorDTO = new IndicadorDTO();
+			indicadorDTO.id = indicador.getId();
+			indicadorDTO.nome = indicador.getNome();
+			indicadoresDTO.add(indicadorDTO);
+		}		
+		dto.indicadores = indicadoresDTO;
 			
 		return dto;
 	}

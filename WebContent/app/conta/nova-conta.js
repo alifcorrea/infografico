@@ -23,7 +23,7 @@ masterGraphicsApp.controller('NovaContaCtrl', function ($scope, $location, Conta
 			
 			function(data){
 				console.log('Sucesso');
-				
+				$scope.contas = ContaService.query();
 			},
 			function(data){
 				console.log('Erro');

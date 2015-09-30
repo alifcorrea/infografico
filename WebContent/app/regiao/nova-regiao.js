@@ -26,12 +26,11 @@ masterGraphicsApp.controller('NovaRegiaoCtrl', function ($scope, $location, Regi
 
 	$scope.salvar = function(){
 		
-		console.log($scope.regiao.conta);
-		
 		$scope.regiao.$save({id: null},
 			function(){
 				alert('sucesso!!');
 				$location.path("/regiao");
+				$scope.regioes = RegiaoService.query();
 			},
 			function(response){
 				alert('erro!!');

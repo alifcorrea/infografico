@@ -34,9 +34,12 @@ public class TemaRest {
 	public Response salvar(String json){
 			
 		TemaDTO dto = Json.fromJson(json, TemaDTO.class);
-		temaService.salvar(dto);
-		return Response.ok().build();
-			
+		boolean resposta = temaService.salvar(dto);
+		if(resposta){			
+			return Response.ok().build();		
+		}else{
+			return Response.serverError().build();
+		}			
 	}
 	
 /*	@GET
