@@ -7,8 +7,21 @@ angular.module('appControllers')
 	/* FIM PARAMETRO PASSADO DO TEMA */
 	
 	$scope.indicadores = [];
-	$scope.indicadores = IndicadorService.query();
-
+	IndicadorService.query(function(data){
+		 $scope.indicadores = data;
+		
+		$scope.indicadoresDoTema = [];
+		$scope.listagemIndicadores = [];		
+		for ( var i = 0; i < $scope.indicadores.length; i++) {			
+			if($scope.indicadores[i].tema.id == $scope.idTema){				 				
+				$scope.indicadoresDoTema = $scope.indicadores[i];				
+				console.log($scope.indicadoresDoTema);
+				$scope.listagemIndicadores.push($scope.indicadoresDoTema);
+		 	}
+		}
+		
+	});
+	
 	$scope.novoIndicador = function(){
 		$location.path("/indicador/cadastro");
 	};
@@ -16,7 +29,7 @@ angular.module('appControllers')
 	$scope.temas = [];
 	TemaService.query(function(data){
 		$scope.temas = data;
-		$scope.NomeTema = "";;
+		$scope.NomeTema = "";
 	  	
 	  	for ( var i = 0; i < $scope.temas.length; i++) {  		
 	  		if($scope.temas[i].id == $scope.idTema){  			
@@ -57,8 +70,6 @@ angular.module('appControllers')
 	  			},
 	  			function(data){
 	  				$scope.indicadores = IndicadorService.query();
-	  				$scope.conta = ContaService.query();
-
 	  			},
 	  			function(data){
 	  				console.log('Erro');
@@ -68,8 +79,8 @@ angular.module('appControllers')
   	}
   	
 
-  $scope.alterar = function(indicador){
-	  $location.path("/indicador/cadastro/"+indicador.id);
-  };
+	  $scope.alterar = function(indicador){
+		  $location.path("/indicador/cadastro/"+indicador.id);
+	  };
 
  });
