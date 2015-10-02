@@ -18,30 +18,18 @@ public class IndicadorService {
 	public List<IndicadorDTO> buscarTodos() {
 
 		List<Indicador> indicadores = indicadorRepository.buscarTodos();
-		List<Tema> temas = temaRepository.buscarTodos();
 		List<IndicadorDTO> indicadorDTO = new ArrayList<IndicadorDTO>();
-		List<TemaDTO> temaDTO = new ArrayList<TemaDTO>();
-
-	if(indicadorDTO != null){
-
+		for (Indicador indicador : indicadores) {
 			IndicadorDTO dto = new IndicadorDTO();
-			TemaDTO dtoTema = new TemaDTO();
-
-			for (Indicador indicador : indicadores) {
-				dto.id = indicador.getId();
-				dto.nome = indicador.getNome();
-					Tema tema = new Tema();
-					tema.id = indicador.getTema().getId();
-					tema.nome = indicador.getTema().getNome();
-					dto.tema = tema;
-
-					}
-
-			for (Tema tema : temas) {
-				dtoTema.id = tema.getId();
-				dtoTema.nome = tema.getNome();
-			}
-			temaDTO.add(dtoTema);
+			
+			dto.id = indicador.getId();
+			dto.nome = indicador.getNome();
+			
+			Tema tema = new Tema();
+			tema.id = indicador.getTema().getId();
+			tema.nome = indicador.getTema().getNome();
+			dto.tema = tema;
+								
 			indicadorDTO.add(dto);
 		}
 		return indicadorDTO;
@@ -69,24 +57,27 @@ public class IndicadorService {
 	}*/
 
 	public boolean salvar(IndicadorDTO dto) {
-
-		Indicador indicador = new Indicador();		
-		indicador.setId(dto.id);
-		indicador.setNome(dto.nome);
 		
-		Tema tema = new Tema();
-		tema.setId(dto.tema.id);
-		tema.setIndicadores(null);
-		tema.setNome(dto.tema.nome);
-		tema.setRegiao(dto.tema.getRegiao());		
-		indicador.setTema(tema);
-
-		if(indicador.getId() != 0){
-			indicadorRepository.atualizar(indicador);
-		}else{
-			indicadorRepository.salvar(indicador);
+		try {
+			Indicador indicador = new Indicador();
+			indicador.setId(dto.id);
+			indicador.setNome(dto.nome);
+			indicador.setTema(temaRepository.findById(dto.tema.id));
+			
+			if(indicador.getId() == 0){
+				indicadorRepository.salvar(indicador);
+			}else{
+				indicadorRepository.atualizar(indicador);
+			}
+		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
+		
 		return true;
+		
 	}
 
 	public void deletar(Long id){
