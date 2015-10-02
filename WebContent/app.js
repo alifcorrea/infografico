@@ -27,7 +27,7 @@ masterGraphicsApp.config(function($routeProvider, $locationProvider){
 
     // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
     .when('/principal', {
-       templateUrl : 'app/principal/principal.html',
+       templateUrl : 'app/template/index.html',
        controller     : 'PrincipalCtrl',
     })
 
