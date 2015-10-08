@@ -24,8 +24,12 @@ masterGraphicsApp.controller('NovoIndicadorCtrl', function ($scope, $location, I
 
 	$scope.salvarNovoIndicador = function () {
 		
-		$scope.indicador.tema = [];
-		$scope.indicador.tema.id = "1";
+		if($scope.indicador.id === undefined){
+			$scope.indicador.id = 0;
+		}
+		
+		$scope.indicador.tema = {};
+		$scope.indicador.tema.id = $scope.idTema;
 		
 		console.log($scope.indicador);
 		
@@ -33,7 +37,7 @@ masterGraphicsApp.controller('NovoIndicadorCtrl', function ($scope, $location, I
 
 			function(data){
 				console.log('Sucesso');
-				//$location.path("/indicador/"+$scope.idTema);
+				$location.path("/indicador/"+$scope.idTema);
 			},
 			function(data){
 				console.log('Erro');

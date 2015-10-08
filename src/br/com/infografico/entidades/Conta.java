@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Conta {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@Column(name = "email")
 	private String email;
