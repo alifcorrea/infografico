@@ -27,9 +27,6 @@ public class Indicador {
 	@JoinColumn(name = "id_tema")
 	private Tema tema;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "indicador")
-	private List<Quadro> quadros;
-
 	public long getId() {
 		return id;
 	}
@@ -54,12 +51,5 @@ public class Indicador {
 		this.tema = tema;
 	}
 
-	public List<Quadro> getQuadros() {
-		return quadros;
-	}
-
-	public List<Quadro> setQuadros(List<Quadro> quadros) {
-		return this.quadros = quadros;
-	}
 
 }

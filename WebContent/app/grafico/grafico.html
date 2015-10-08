@@ -1,13 +1,37 @@
-<div id="dialog" style="width: 1366px;height: 670px;background-color: rgba(0, 0, 0, 0.44); position: absolute;top: -35px;left: -80px;">
-
-<div style="width: 85%;height: 600px;background: #fff;margin: auto;margin-top: 35px;margin-left: 14%;">
-
-
-<div id="titulo" style="width: 100%;height: 30px;background-color:#48738C;color:#fff;">
-	{{titDialog}}
-</div>
 
 <div id="imagens" style="width: 7%;float:left;" ng-show="abreSelecionaGrafico">
+<style>
+
+	.class:hover {
+
+		border: 20px solid;
+		-webkit-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		transform: scale(1.1);
+
+	}
+
+</style>
+<!--
+<span ng-click="naopodese()"> nao pode se </span>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<div ng-repeat="n in listGraficos track by $index">
+  <div id="grafico{{$index}}" style="min-width: 200px; height: 200px; max-width: 400px; margin: 0 auto">a</div>
+</div>
+-->
+
+
+<img class="class" ng-click="geraGraficoPIE()" src="imagens\chart-pizza.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: left;margin-top: 15px;margin-left: 80px;"/>
+<img class="class" ng-click="abriGraficoArea()" src="imagens\chartArea.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: left;margin-top: 15px;margin-left: 80px;"/>
+<img class="class" ng-click="abriGraficoVel2()" src="imagens\chartBarra.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: left;margin-top: 15px;margin-left: 80px;"/>
+<img class="class" ng-click="abriGraficoColunaHorizontal()" src="imagens\chartColunaLateral.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: left;margin-top: 15px;margin-left: 80px;"/>
+<img class="class" ng-click="geraGraficoColuna()" src="imagens\chart-colunaReta.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: right;margin-top: 15px;margin-left: 20px;position: absolute;"/>
+<img class="class" ng-click="abriGraficoBar()" src="imagens\chartLinha.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: right;margin-top: 162px;position: absolute;margin-left: 20px;"/>
+<img class="class" ng-click="abriGrafico3D()" src="imagens\chartTriangu.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: right;position: absolute;margin-top: 307px;margin-left: 20px;"/>
+<img class="class" ng-click="abriGraficoVel()" src="imagens\chartVel.png" style="cursor:pointer;width: 299px;height: 130px;border: 1px solid;float: right;position: absolute;margin-top: 451px;margin-left: 20px;"/>
+<!--
 <div class="flaticon-piechart1" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoPIE(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-bars-graphic" style="cursor:pointer;font-size: 65px;"ng-click="geraGraficoColuna(); titDialog = 'Adicione valores'"></div>
 <div class="flaticon-increasing5" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoColunaHorizontal(); titDialog = 'Adicione valores'"></div>
@@ -18,13 +42,21 @@
 </div>
 <div id="imagens1" style="width: 7%;float:left;margin-left:50px;" ng-show="abreSelecionaGrafico">
 <div class="flaticon-increasing5" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoVel2(); titDialog = 'Adicione valores'"></div>
+<div class="flaticon-business54" style="cursor:pointer;font-size: 65px;"ng-click="abriGraficoRegiao(); titDialog = 'Adicione valores'"></div>
+-->
+
 </div>
 
 
-<div id="formGeraGrafico" ng-show="mostraFormGraficoPizza">
-	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
+    <div ng-bind-html="deliberatelyTrustDangerousSnippet('<p> teste123 </p>')"></div>
 
-	<form>
+<div id="formGeraGrafico" ng-show="mostraFormGraficoPizza">
+	<div id="campos" style="width:100%;float:left;margin-top: 10px;overflow-y:auto;">
+		<form>
+			<div ng-click="abaGrafico = true;">Aba Grafico</div>
+				<div ng-click="abaGrafico = false">Aba Texto</div>
+		<div ng-show="abaGrafico">
+
 		Titulo: <input	id="uf" type="text" ng-model="tituloGraficoPizza">
 			Tipo Medida: <input	id="uf" type="text" ng-model="tpMedida">
 		 <div id="formEditor" ng-repeat="obj in objs">
@@ -56,9 +88,27 @@
 				Gerar Grafico
 			</span>
 		</div>
+
+	</div>
+	<div ng-hide="abaGrafico">
+
+			<textarea name="editor1" id="editor1" rows="10" cols="80" id="textoGrafico">
+
+			</textarea>
+			<script>
+					// Replace the <textarea id="editor1"> with a CKEditor
+					// instance, using default configuration.
+					CKEDITOR.replace( 'editor1' );
+			</script>
+
+			<button ng-click="pegarTexto()">PEGAR TEXTO</button>
+		</div>
 	</form>
+
+
 	</div>
 	<div id="preview" style="width:50%;float:left;">
+		<span>{{textoGrafico}}</span>
 		<div id="container" style="min-width: 200	px; height: 200px; max-width: 400px; margin: 0 auto"></div>
 	</div>
 </div>
@@ -69,51 +119,62 @@
 
 
 <div id="formGeraGrafico2" ng-show="mostraFormGraficoColuna">
-	<div id="campos" style="width:50%;float:left;margin-top: 10px;overflow-y:auto;height:310px;">
-
-	<form>
-		Titulo: <input	id="uf" type="text" ng-model="tituloGraficoColuna">
-		Tipo Medida: <input	id="uf" type="text" ng-model="tpMedida">
-		<div id="formEditor" ng-repeat="obj in objs">
-			<div>
-			Chave:  <input	id="nome" type="text" ng-model="obj.name">
-			</div>
-
-			<div>
-			Valor:  <input	id="uf" type="number" ng-model="obj.y">
-			</div>
-		</div>
-
-		<div>
-		Chave: 	 <input	id="nome" type="text" ng-model="obj.name">
-			</div>
-
-			<div>
-			Valor:  <input	id="uf" type="number" ng-model="obj.y">
-			</div>
-
-		<div>
-			<span ng-click="geraNovoCampo()">
-				Adicionar Valor<i class="fa fa-plus"></i>
-			</span>
-		</div>
-
-		<div class="form-group col-lg-1 marginBTN" style="margin-left: 180px;">
-			<span class="btn btn-primary" ng-click="geraDadosGraficoColuna()">
-				Gerar Grafico
-			</span>
-		</div>
-	</form>
+	<div ng-click="abaGrafico = true;">Aba Grafico</div>
+		<div ng-click="abaGrafico = false">Aba Texto</div>
+<div ng-show="abaGrafico">
+	<div>
+			Titulo: <input type="text" ng-model="linha.titulo">
+			texto: <input type="text" ng-model="linha.lateral">
+			Tipo de medida: <input type="text" ng-model="linha.tpMedida">
 	</div>
-	<div id="preview" style="width:50%;float:left;">
-
-	<script src="http://code.highcharts.com/modules/data.js"></script>
-	<script src="http://code.highcharts.com/modules/drilldown.js"></script>
-
-<div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div style="    float: left;    position: relative;left: 25%;margin-bottom: 20px;">
+		Serie: <input type="text" ng-model="serie.name">
+		<div ng-click="series.push(serie); serie = null;">Adicionar Serie <i class="fa fa-plus-square-o"></i></div>
 
 
+		<!--<div ng-repeat="serie in series">{{serie.name}}</div>-->
 	</div>
+	<div style="position: relative;;float: right;right: 28%;">
+		Categoria: <input type="text" ng-model="categoria">
+		<div ng-click="categorias.push(categoria); categoria = null;">Adicionar Categoria <i class="fa fa-plus-square-o"></i></div>
+		<!--<div ng-repeat="categoria in categorias">{{categoria}}</div>-->
+	</div>
+
+	<table>
+		<th></th>
+		<th ng-repeat="categoria in categorias track by $index">{{categoria}}</th>
+		<tr ng-repeat="serie in series track by $index">
+			<td>
+				{{serie.name}}
+			</td>
+			<td ng-repeat="categoria in categorias track by $index">
+				<input type="text" ng-model="serie.data[$index]">
+			</td>
+		</tr>
+	</table>
+
+	<div ng-click="geraDadosGraficoColuna()">Gerar Grafico</div>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<div id="containerCol" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</div>
+	<div ng-hide="abaGrafico">
+
+			<textarea name="editor1" id="editor2" rows="10" cols="80" id="textoGrafico1">
+
+			</textarea>
+			<script>
+					// Replace the <textarea id="editor1"> with a CKEditor
+					// instance, using default configuration.
+					CKEDITOR.replace( 'editor2' );
+			</script>
+
+			<button ng-click="pegarTexto()">PEGAR TEXTO</button>
+		</div>
+
+		<button ng-click="geraValoresDosGraficosParaSalvarNoBanco()">Salvar no banco</button>
+
 </div>
 
 
@@ -158,9 +219,6 @@
 <!--  GRAFICO 4 -->
 
 <div id="formGeraGrafico4" ng-show="mostraFormGraficoVel">
-
-
-
 
 Titulo: <input type="text" ng-model="tituloVel">
 Chave: <input type="text" ng-model="chaveVel">
@@ -231,7 +289,6 @@ Valor: <input type="number" ng-model="valorVel">
 			</td>
 		</tr>
 	</table>
-
 <button ng-click="geraGrafico3D()"> GERAR </button>
 
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
@@ -242,6 +299,16 @@ Valor: <input type="number" ng-model="valorVel">
 </div>
 
 
+<div id="formGeraGrafico6" ng-show="mostraFormGraficoRegiao">
+
+<button ng-click="gerarGraficoRegioes()"> GERAR </button>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="containerCoCor" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
 </div>
+
 
 </div>

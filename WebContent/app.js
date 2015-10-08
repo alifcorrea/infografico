@@ -17,7 +17,8 @@ var masterGraphicsApp = angular.module(
       'ngResource',
       'ngRoute',
       'ngAnimate',
-      'mgcrea.ngStrap.tooltip'
+      'mgcrea.ngStrap.tooltip',
+      'ngSanitize'
    ]
 );
 
@@ -111,17 +112,17 @@ masterGraphicsApp.config(function($routeProvider, $locationProvider){
       templateUrl : 'app/indicador/indicador.html',
       controller: 'IndicadorCtrl',
    })
-   
+
     .when('/indicador/cadastro', {
       templateUrl : 'app/indicador/novo-indicador.html',
       controller: 'NovoIndicadorCtrl',
    })
-   
+
    .when('/indicador/:id', {
       templateUrl : 'app/indicador/indicador.html',
       controller: 'IndicadorCtrl',
-   })   
-   
+   })
+
    .when('/indicador/cadastro/:id', {
       templateUrl : 'app/indicador/novo-indicador.html',
       controller: 'NovoIndicadorCtrl',

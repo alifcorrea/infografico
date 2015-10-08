@@ -19,12 +19,15 @@
 	<script src="js/angular-route.js"></script>
 	<script src="js/angular-animate.js"></script>
 	<script src="js/angular-resource.js"></script>
+	<script src="ckeditor/ckeditor.js"></script>
+	<script src="filters\html-filter.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
 </head>
 
 <body style="height: calc(100%); width: calc(100%);" ng-controller="IndexCtrl">
-	
+
 	<div id="menuSuperior" style="width:100%; height:35px; background:#ccc;"></div>
-	
+
     <header>
 		<nav>
 			<ul>
@@ -32,7 +35,7 @@
 					<a href="#/conta/">
 						<span><i class="fa fa-users"></i></span>
 						<div class="nav-item-wrap" >
-							<p>Usuários</p>
+							<p>Usuï¿½rios</p>
 						</div>
 					</a>
 				</li>
@@ -40,7 +43,7 @@
 					<a href="#/regiao/">
 						<span><i class="fa fa-map-marker"></i></span>
 						<div class="nav-item-wrap">
-							<p>Regiões</p>
+							<p>Regiï¿½es</p>
 						</div>
 					</a>
 				</li>
@@ -56,20 +59,20 @@
 					<a href="#/grafico/">
 						<span><i class="fa fa-area-chart"></i></span>
 						<div class="nav-item-wrap">
-							<p>Gráficos</p>
+							<p>Grï¿½ficos</p>
 						</div>
 					</a>
 				</li>
 			</ul>
 		</nav>
 	</header>
-	
-	<div style="height: 100%; position: fixed; width: calc(100% - 200px); left: 80px;">
+
+	<div style="height: 100%; position: fixed; width: calc(100% - 100px); left: 100px;">
 		<div id="main">
 			<div ng-view></div>
 		</div>
 	</div>
-		
+
 </body>
 
 	<!-- Os Demais arquivos que carregar depois do BODY para melhorar o tempo de carregamento -->
@@ -101,5 +104,6 @@
 
 	<script src="diretivas/larva.js"></script>
 	<script src="app/grafico/grafico.js"></script>
+		<script src="app/grafico/grafico-service.js"></script>
 
 </html>

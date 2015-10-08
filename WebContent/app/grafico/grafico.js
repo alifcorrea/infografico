@@ -1,5 +1,5 @@
 angular.module('appControllers')
-.controller('GraficoCtrl', function ($scope, $location) {
+.controller('GraficoCtrl', function ($scope, $location, $sce, GraficoService) {
 
 	$scope.editor = false;
 
@@ -8,6 +8,43 @@ angular.module('appControllers')
 	$scope.titDialog = "Escolha um grafico";
 	$scope.tpGrafico = '';
 	$scope.tpMedida = '';
+
+	$scope.snippet = '<p> teste </p>';
+   $scope.deliberatelyTrustDangerousSnippet = function(texto) {
+     return $sce.trustAsHtml(texto);
+	}
+
+
+$scope.pegarTexto = function(){
+	 $scope.textoGrafico = CKEDITOR.instances.editor1.getData();
+		console.log($scope.textoGrafico);
+}
+
+GraficoService.query(function(response){
+	$scope.listGraficos = response;
+	});
+
+
+	$scope.naopodese = function(){
+		for (var i = 0; i < $scope.listGraficos.length; i++) {
+
+				$('#grafico'+i).highcharts(JSON.parse($scope.listGraficos[i].grafico));
+		}
+	}
+
+$scope.geraValoresDosGraficosParaSalvarNoBanco = function(){
+		$scope.graficoBD = new GraficoService();
+		$scope.graficoBD.texto =  CKEDITOR.instances.editor2.getData();
+		$scope.graficoBD.grafico = JSON.stringify($scope.valoresGrafico);
+
+		console.log($scope.graficoBD);
+		$scope.graficoBD.$save(function(){
+				alert('certooooooooooooooo');
+		},function(response){
+
+		});
+
+};
 
 	$scope.abreEditor = function(){
 		$scope.editor = true;
@@ -27,6 +64,7 @@ angular.module('appControllers')
 	};
 
 	$scope.geraGraficoPIE = function(){
+		alert('alert');
 		$scope.mostraFormGraficoPizza = true;
 		$scope.abreSelecionaGrafico = false;
 	};
@@ -41,48 +79,41 @@ angular.module('appControllers')
 		$scope.abreSelecionaGrafico = false;
 	};
 
-
 	$scope.geraDadosGraficoColuna = function(){
-	$('#container1').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: $scope.tituloGraficoColuna
-        },
-        subtitle: {
-            text: null
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: null
-            }
+		for (var i = 0; i < $scope.series.length; i++) {
+			$scope.series[i].data = Object.keys($scope.series[i].data).map(function (key) {return parseInt($scope.series[i].data[key])});
+		};
 
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
+		$scope.valoresGrafico = {
+					chart: {
+							type: 'column'
+					},
+					title: {
+							text: $scope.linha.titulo
+					},
+					xAxis: {
+							categories: $scope.categorias,
+							crosshair: true
+					},
+					tooltip: {
+							headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+							pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+									'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+							footerFormat: '</table>',
+							shared: true,
+							useHTML: true
+					},
+					plotOptions: {
+							column: {
+									pointPadding: 0.2,
+									borderWidth: 0
+							}
+					},
+					series: $scope.series
+			};
 
-        tooltip: {
-            headerFormat: '<span style="font-size:6px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}'+$scope.tpMedida+'</b> do total<br/>'
-        },
-				series: [{
-            colorByPoint: true,
-            data: $scope.objs
-        }]
-    });
+		$('#containerCol').highcharts($scope.valoresGrafico);
+		console.log(JSON.stringify($scope.valoresGrafico));
 	};
 
   $scope.geraGraficoPizza = function(){
@@ -437,6 +468,80 @@ $scope.geraGrafico3D = function(){
 
     });
 
+}
+
+$scope.abriGraficoRegiao = function(){
+	$scope.abreSelecionaGrafico = false;
+	$scope.mostraFormGraficoRegiao = true;
+}
+
+$scope.gerarGraficoRegioes = function(){
+	$('#containerCoCor').highcharts({
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: 'Efficiency Optimization by Branch'
+	        },
+	        xAxis: {
+	            categories: [
+	                'Seattle HQ',
+	                'San Francisco',
+	                'Tokyo'
+	            ]
+	        },
+	        yAxis: [{
+	            min: 0,
+	            title: {
+	                text: 'Employees'
+	            }
+	        }, {
+	            title: {
+	                text: 'Profit (millions)'
+	            },
+	            opposite: true
+	        }],
+	        legend: {
+	            shadow: false
+	        },
+	        tooltip: {
+	            shared: true
+	        },
+	        plotOptions: {
+	            column: {
+	                grouping: false,
+	                shadow: false,
+	                borderWidth: 0
+	            }
+	        },
+	        series: [{
+	            name: 'Employees',
+	            color: 'rgba(165,170,217,1)',
+	            data: [150, 73, 20],
+	            pointPadding: 0.3,
+	            pointPlacement: -0.2
+	        }, {
+	            name: 'Employees Optimized',
+	            color: 'rgba(126,86,134,.9)',
+	            data: [140, 90, 40],
+	            pointPadding: 0.4,
+	            pointPlacement: -0.2
+	        }, {
+	            name: 'Profit',
+	            color: 'rgba(248,161,63,1)',
+	            data: [183.6, 178.8, 198.5],
+	            pointPadding: 0.3,
+	            pointPlacement: 0.2,
+	            yAxis: 1
+	        }, {
+	            name: 'Profit Optimized',
+	            color: 'rgba(186,60,61,.9)',
+	            data: [203.6, 198.8, 208.5],
+	            pointPadding: 0.4,
+	            pointPlacement: 0.2,
+	            yAxis: 1
+	        }]
+	    });
 }
 
  });
