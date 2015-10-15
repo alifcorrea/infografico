@@ -15,8 +15,8 @@ angular.module('appControllers')
 	}
 
 	$scope.pegarTexto = function(){
-		 $scope.textoGrafico = CKEDITOR.instances.editor1.getData();
-			console.log($scope.textoGrafico);
+		$scope.textoGrafico = CKEDITOR.instances.editor1.getData();
+		console.log($scope.textoGrafico);
 	}
 
 	GraficoService.query(function(response){

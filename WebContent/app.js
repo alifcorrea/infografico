@@ -38,6 +38,12 @@ masterGraphicsApp.config(function($routeProvider, $locationProvider){
 	      controller     : 'GraficoCtrl',
 	   })
 
+   // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
+   .when('/grafico2', {
+         templateUrl : 'app/grafico/grafico2.html',
+         controller     : 'Grafico2Ctrl',
+      })
+
 	 .when('/quadro', {
       templateUrl : 'app/quadro/quadro.html',
       controller  : 'QuadroCtrl',
