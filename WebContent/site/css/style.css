@@ -1,5 +1,6 @@
 body{
 	font-family: 'Dosis', sans-serif;
+	overflow-x: hidden!important;
 }
 p{
 	font-family: 'Montserrat', sans-serif;
@@ -21,7 +22,7 @@ text-transform: uppercase;
 	color: #f74d65;
 }
 header{
-	background: url(../images/foto-baia-1.jpg);
+	background: url(../images/galery/dsc_0589-u4922-fr.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -54,11 +55,11 @@ header{
 	text-transform: uppercase;
 }
 
+.container
 
 /*Services*/
 .services{
 	padding-top: 96px;
-
 }
 .services .container{
 	border-bottom: 1px solid #ddd;
@@ -102,17 +103,17 @@ background-color: #2d3334;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	line-height: 21px;
+	text-align:justify;
 }
 .about_title h2{
 	font-size: 25px;
 	color: #3d3d3d;
 	text-transform: uppercase;
-	margin-top: 85px;
+	margin-top: 75px;
 	letter-spacing: 6px;
-	margin-bottom: 21px;
 }
 .about_title img{
-	margin-bottom: 70px;
+	margin-bottom: 20px;
 }
 /*Testimonial*/
 .testimonial{
@@ -121,6 +122,12 @@ background-color: #2d3334;
 }
 .testimonial{
 
+}
+
+.produtividade{
+	background: url(../images/galery/dsc_8680.jpg);
+	background-size: 100% 20%;
+	background-repeat: no-repeat;
 }
 .testimonial .icon:after{
 	content: "";
